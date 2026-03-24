@@ -1,0 +1,1634 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <title>ООО ЛЮМИКС - IT-решения для бизнеса</title>
+  <meta name="description" content="ООО ЛЮМИКС - разработка, автоматизация, интеграции и запуск цифровых сервисов для бизнеса.">
+
+  <style>
+    :root{
+      --bg:#040404;
+      --card:rgba(11,11,11,.92);
+      --card-strong:#101010;
+      --text:#e2bf96;
+      --muted:#b18e68;
+      --line:rgba(165,126,82,.045);
+      --blue:#7b5938;
+      --blue-soft:#131211;
+      --blue-strong:#e0aa70;
+      --steel:#121212;
+      --steel-dark:#1c1c1c;
+      --shadow:0 22px 62px rgba(0,0,0,.3);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(980px 560px at 12% 14%, rgba(92,58,26,.16), transparent 60%),
+        radial-gradient(820px 520px at 88% 10%, rgba(72,46,24,.13), transparent 62%),
+        linear-gradient(180deg, #030303 0%, #070707 42%, #040404 100%);
+      overflow-x:hidden;
+      position:relative;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.1;
+      background:
+        linear-gradient(rgba(207,154,98,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(207,154,98,.028) 1px, transparent 1px);
+      background-size:36px 36px;
+      mask-image:radial-gradient(circle at center, black 40%, transparent 95%);
+      animation:gridShift 48s linear infinite;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.12;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(144,97,48,.11), transparent 24%),
+        radial-gradient(circle at 82% 8%, rgba(191,138,77,.08), transparent 28%),
+        linear-gradient(115deg, transparent 0 44%, rgba(207,154,98,.016) 44% 45%, transparent 45% 100%),
+        linear-gradient(65deg, transparent 0 58%, rgba(207,154,98,.014) 58% 59%, transparent 59% 100%);
+      animation:glowDrift 28s ease-in-out infinite alternate;
+    }
+    a{color:inherit}
+    .wrap{
+      width:min(1680px, calc(100vw - 72px));
+      max-width:1680px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .section{padding:38px 0}
+    .sectionTitle{
+      margin:0 0 14px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:29px;
+      line-height:1.08;
+      letter-spacing:-.75px;
+      font-weight:700;
+      color:var(--blue-strong);
+    }
+    .contentLead{
+      margin:0 0 22px;
+      max-width:920px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.82;
+      font-weight:400;
+    }
+    .card{
+      background:
+        linear-gradient(180deg, rgba(16,16,16,.98), rgba(9,9,9,.94)),
+        var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+      position:relative;
+      transition:transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s cubic-bezier(.22,1,.36,1), border-color .55s ease;
+    }
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      pointer-events:none;
+      background:
+        linear-gradient(135deg, rgba(207,154,98,.018), transparent 28%, transparent 74%, rgba(154,111,67,.014));
+      opacity:.55;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:44px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(182,132,82,.08);
+      background:linear-gradient(180deg, rgba(18,18,18,.96), rgba(11,11,11,.92));
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s cubic-bezier(.22,1,.36,1), border-color .35s ease, background .35s ease;
+      box-shadow:0 8px 20px rgba(0,0,0,.16);
+    }
+    .pill:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 24px rgba(0,0,0,.18);
+      border-color:rgba(182,132,82,.1);
+    }
+    .pill.ghost{
+      background:rgba(182,132,82,.016);
+      border-color:rgba(182,132,82,.05);
+      box-shadow:none;
+      color:var(--muted);
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(8,8,8,.84);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      text-decoration:none;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      min-height:1.2em;
+    }
+    .brandText{
+      display:inline-block;
+    }
+    .brandCursor{
+      display:inline-block;
+      width:1px;
+      height:.95em;
+      margin-left:5px;
+      background:rgba(182,132,82,.82);
+      box-shadow:0 0 12px rgba(182,132,82,.12);
+      opacity:.88;
+      transform:translateY(1px);
+      animation:brandBlink 1.15s ease-in-out infinite;
+    }
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .menu{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .menuLink{
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+      padding:10px 12px;
+      border-radius:999px;
+    }
+    .menuLink:hover{background:rgba(182,132,82,.05);color:var(--text)}
+
+    .hero{
+      padding:56px 0 34px;
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(520px,.92fr);
+      gap:32px;
+      align-items:center;
+      min-height:calc(100vh - 110px);
+    }
+    .heroPanel{
+      padding:52px 50px 46px;
+      position:relative;
+      overflow:hidden;
+      align-self:stretch;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .heroPanel::before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -80px auto;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(114,77,42,.16), transparent 72%);
+      pointer-events:none;
+      animation:heroGlow 14s ease-in-out infinite;
+    }
+    h1{
+      margin:0 0 18px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:64px;
+      line-height:1.02;
+      letter-spacing:-2px;
+      font-weight:700;
+      max-width:10ch;
+      color:var(--blue-strong);
+    }
+    .sub{
+      margin:0 0 24px;
+      max-width:44ch;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.84;
+      font-weight:400;
+    }
+    .heroBadges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:24px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:36px;
+      padding:0 13px;
+      border-radius:999px;
+      background:rgba(182,132,82,.024);
+      border:1px solid var(--line);
+      font-size:12px;
+      font-weight:800;
+      color:rgba(223,191,151,.88);
+    }
+    .heroActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .heroTech{
+      display:grid;
+      gap:14px;
+      position:relative;
+      align-self:stretch;
+      align-content:center;
+    }
+    .heroBoard{
+      padding:28px;
+      display:grid;
+      gap:14px;
+      min-height:430px;
+      background:
+        linear-gradient(180deg, rgba(16,16,16,.98), rgba(10,10,10,.94));
+      animation:boardFloat 16s ease-in-out infinite;
+    }
+    .boardTop{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      padding-bottom:16px;
+      border-bottom:1px solid rgba(182,132,82,.03);
+    }
+    .boardKicker{
+      font-size:10px;
+      line-height:1.45;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:var(--blue-strong);
+    }
+    .boardStatus{
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid rgba(182,132,82,.05);
+      background:rgba(182,132,82,.016);
+      font-size:12px;
+      font-weight:800;
+      color:var(--muted);
+      white-space:nowrap;
+      animation:none;
+    }
+    .boardMain{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:14px;
+    }
+    .boardCell{
+      padding:20px 18px;
+      border-radius:20px;
+      border:1px solid rgba(182,132,82,.04);
+      background:
+        linear-gradient(180deg, rgba(15,15,15,.96), rgba(10,10,10,.9));
+      position:relative;
+      overflow:hidden;
+      transition:transform .55s cubic-bezier(.22,1,.36,1), border-color .55s ease, box-shadow .55s cubic-bezier(.22,1,.36,1);
+    }
+    .boardCell::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(182,132,82,.012) 1px, transparent 1px),
+        linear-gradient(rgba(182,132,82,.01) 1px, transparent 1px);
+      background-size:18px 18px;
+      opacity:.22;
+      pointer-events:none;
+    }
+    .boardLabel{
+      display:block;
+      margin-bottom:8px;
+      font-size:10px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:var(--blue-strong);
+      position:relative;
+      z-index:1;
+    }
+    .boardValue{
+      display:block;
+      margin-bottom:8px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:26px;
+      line-height:1.08;
+      font-weight:700;
+      position:relative;
+      z-index:1;
+      color:var(--blue-strong);
+    }
+    .boardText{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.72;
+      font-weight:400;
+      position:relative;
+      z-index:1;
+    }
+    .boardLines{
+      display:grid;
+      gap:9px;
+      position:relative;
+      z-index:1;
+      margin-top:8px;
+    }
+    .boardLines span{
+      display:block;
+      height:8px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(107,74,42,.16), rgba(182,132,82,.48));
+      box-shadow:0 0 8px rgba(182,132,82,.028);
+      animation:linePulse 9s ease-in-out infinite;
+    }
+    .boardLines span:nth-child(1){width:92%}
+    .boardLines span:nth-child(2){width:66%}
+    .boardLines span:nth-child(3){width:84%}
+    .boardLines span:nth-child(4){width:58%}
+    .boardLines span:nth-child(2){animation-delay:1s}
+    .boardLines span:nth-child(3){animation-delay:2s}
+    .boardLines span:nth-child(4){animation-delay:3s}
+    .boardMiniGrid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .techPills{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .metaCard{
+      padding:24px 22px;
+      min-height:182px;
+      position:relative;
+      overflow:hidden;
+    }
+    .metaCard:hover,
+    .serviceCard:hover,
+    .resultCard:hover,
+    .fitCard:hover,
+    .processCard:hover,
+    .stageCard:hover,
+    .reviewsSlider:hover,
+    .footerCard:hover,
+    .heroPanel:hover{
+      transform:translateY(-1px);
+      box-shadow:0 18px 34px rgba(0,0,0,.2);
+      border-color:rgba(182,132,82,.055);
+    }
+    .boardCell:hover{
+      transform:translateY(-1px);
+      border-color:rgba(182,132,82,.06);
+      box-shadow:0 10px 18px rgba(0,0,0,.16);
+    }
+    .metaCard::after{
+      content:"";
+      position:absolute;
+      right:-32px;
+      bottom:-42px;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(182,132,82,.018), transparent 70%);
+    }
+    .metaLabel{
+      display:block;
+      margin-bottom:10px;
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:var(--blue-strong);
+    }
+    .metaValue{
+      display:block;
+      margin-bottom:10px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:21px;
+      line-height:1.08;
+      font-weight:700;
+      color:var(--blue-strong);
+    }
+    .metaText{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.72;
+      font-weight:400;
+      max-width:28ch;
+    }
+    @keyframes robotPulse{
+      0%,100%{transform:scale(1);opacity:.9}
+      50%{transform:scale(1.06);opacity:1}
+    }
+
+    .servicesGrid,
+    .resultsGrid,
+    .fitGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+    }
+    .serviceCard,
+    .resultCard,
+    .fitCard{
+      padding:24px 22px;
+    }
+    .serviceCard h3,
+    .resultCard h3,
+    .fitCard h3,
+    .processCard h3,
+    .stageCard h3{
+      margin:0 0 10px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:19px;
+      line-height:1.12;
+      letter-spacing:-.35px;
+      font-weight:700;
+      color:var(--blue-strong);
+    }
+    .processCard h3{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .serviceCard p,
+    .resultCard p,
+    .fitCard p,
+    .processCard p,
+    .stageCard p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:13px;
+      font-weight:400;
+    }
+
+    .processGrid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+    }
+    .processCard{
+      padding:24px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .processCard::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:4px;
+      background:linear-gradient(180deg, rgba(182,132,82,.7), rgba(98,69,42,.34));
+    }
+    .processNum{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      margin-right:0;
+      border-radius:50%;
+      background:var(--blue-soft);
+      color:var(--blue-strong);
+      font-size:14px;
+      font-weight:900;
+      flex:0 0 34px;
+      line-height:1;
+    }
+
+    .stagesWrap{
+      display:grid;
+      gap:14px;
+    }
+    .stageCard{
+      padding:26px 24px;
+    }
+    .stageCard .stageBullets,
+    .stageCard .stageBullets li{
+      color:var(--text) !important;
+    }
+    .stageCard h3{
+      color:var(--blue-strong) !important;
+    }
+    .stageCard .stageText{
+      color:var(--muted) !important;
+    }
+    .stageText{
+      margin:0 0 12px;
+    }
+    .stageBullets{
+      margin:0 0 14px;
+      padding-left:20px;
+      color:var(--text);
+      font-size:13px;
+      line-height:1.72;
+      font-weight:400;
+    }
+    .stageBullets li{margin-bottom:6px}
+    .stageCard .stageResult{
+      margin:0 0 12px;
+      color:var(--blue-strong) !important;
+      font-size:13px;
+      line-height:1.65;
+      font-weight:700;
+    }
+
+    .faqList{
+      display:grid;
+      gap:12px;
+    }
+    .faqItem{
+      overflow:hidden;
+    }
+    .faqQuestion{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 20px;
+      border:0;
+      background:transparent;
+      text-align:left;
+      cursor:pointer;
+      font:inherit;
+      color:inherit;
+      transition:background .35s ease;
+    }
+    .faqQuestion:hover{background:rgba(182,132,82,.024)}
+    .faqQuestionText{
+      font-size:14px;
+      font-weight:700;
+      line-height:1.52;
+      letter-spacing:-.15px;
+      color:var(--blue-strong);
+    }
+    .faqPlus{
+      flex:0 0 auto;
+      display:block;
+      color:var(--blue-strong);
+      font-size:24px;
+      font-weight:700;
+      transition:transform .35s ease;
+      line-height:1;
+    }
+    .faqItem.open .faqPlus{transform:rotate(45deg)}
+    .faqAnswer{
+      padding:0 20px 18px;
+      color:var(--muted);
+      line-height:1.76;
+      font-size:13px;
+      font-weight:400;
+    }
+
+    .reviewsSlider{
+      position:relative;
+      padding:24px 24px 20px;
+    }
+    .reviewSlide{
+      display:none;
+    }
+    .reviewSlide.is-active{
+      display:block;
+    }
+    .reviewSlide p{
+      margin:0 0 12px;
+      color:rgba(224,192,152,.9);
+      line-height:1.78;
+      font-size:14px;
+      font-weight:400;
+    }
+    .reviewCompany{
+      display:block;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:15px;
+      font-weight:700;
+      color:var(--blue-strong);
+    }
+    .reviewDots{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-top:16px;
+    }
+    .reviewDot{
+      appearance:none;
+      -webkit-appearance:none;
+      padding:0;
+      min-width:10px;
+      min-height:10px;
+      width:10px;
+      height:10px;
+      flex:0 0 10px;
+      display:block;
+      border-radius:50%;
+      border:1px solid rgba(182,132,82,.05);
+      background:rgba(182,132,82,.016);
+      cursor:pointer;
+    }
+    .reviewDot.on{
+      background:rgba(182,132,82,.14);
+      border-color:rgba(182,132,82,.24);
+      box-shadow:0 0 0 2px rgba(182,132,82,.028);
+    }
+
+    footer{
+      padding:20px 0 38px;
+    }
+    .footerCard{
+      padding:26px 24px;
+    }
+    .footerRow{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .footerLeft{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      font-size:13px;
+      color:rgba(217,186,147,.88);
+    }
+    .footerCopy{
+      margin:0;
+      padding:0;
+      font-size:14px;
+      font-weight:800;
+      line-height:1.1;
+      color:var(--blue-strong);
+    }
+    .footerDetails{
+      margin:0;
+      padding:0;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.5;
+      font-weight:400;
+    }
+    .footerContact{
+      text-align:right;
+    }
+    .footerContactLabel{
+      margin:0;
+      padding:0;
+      font-size:14px;
+      font-weight:800;
+      line-height:1.1;
+      color:var(--blue-strong);
+    }
+    .footerContactEmail{
+      margin-top:1px;
+      line-height:1.1;
+    }
+    .footerContactEmail a{
+      color:var(--blue-strong);
+      text-decoration:none;
+      font-size:14px;
+      font-weight:900;
+    }
+    .footerContactEmail a:hover{
+      text-decoration:underline;
+    }
+
+    .modalBackdrop{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,.58);
+      z-index:100;
+    }
+    .modalBackdrop.on{display:flex}
+    .modal{
+      width:min(780px,100%);
+      background:rgba(14,14,14,.98);
+      border:1px solid rgba(207,154,98,.1);
+      border-radius:24px;
+      box-shadow:0 30px 120px rgba(0,0,0,.42);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 18px;
+      border-bottom:1px solid var(--line);
+    }
+    .mTitle{
+      margin:0;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:20px;
+    }
+    .close{
+      border:1px solid rgba(207,154,98,.08);
+      border-radius:12px;
+      background:transparent;
+      color:var(--muted);
+      min-height:40px;
+      padding:0 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .modalBody{
+      max-height:min(72vh, 640px);
+      overflow:auto;
+      padding:20px 18px 22px;
+      color:rgba(228,198,160,.92);
+      line-height:1.68;
+    }
+    .modalBody p{margin:0 0 14px}
+    .modalBody ul{
+      margin:0 0 14px;
+      padding-left:20px;
+    }
+    .modalBody li{margin-bottom:6px}
+    .lead{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.8;
+      font-weight:400;
+    }
+    .mutedSmall{
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.65;
+      letter-spacing:.03em;
+    }
+    .reqForm{margin-top:12px}
+    .reqGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .reqField{
+      display:grid;
+      gap:6px;
+    }
+    .reqField span{
+      font-size:12px;
+      font-weight:900;
+      color:var(--muted);
+      letter-spacing:.02em;
+    }
+    .reqField input,
+    .reqField textarea{
+      width:100%;
+      border:1px solid rgba(207,154,98,.1);
+      border-radius:16px;
+      background:rgba(207,154,98,.024);
+      color:var(--text);
+      padding:12px 14px;
+      outline:none;
+      font:inherit;
+    }
+    .reqField input:focus,
+    .reqField textarea:focus{
+      border-color:rgba(207,154,98,.58);
+      box-shadow:0 0 0 4px rgba(207,154,98,.1);
+    }
+    .reqActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:14px;
+    }
+    .consent{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .consent input{margin-top:3px}
+    .consent a{
+      color:var(--blue-strong);
+      text-decoration:none;
+      font-weight:900;
+    }
+    .consent a:hover{text-decoration:underline}
+
+    .reveal{
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.on{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .heroPanel.reveal{
+      transform:translateY(20px);
+    }
+    .heroPanel.reveal.on{
+      animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) both;
+    }
+    .heroTech.reveal{
+      transform:translateY(26px);
+    }
+    .heroTech.reveal.on{
+      animation:heroRise 1.35s cubic-bezier(.22,1,.36,1) .12s both;
+    }
+    @keyframes gridShift{
+      from{background-position:0 0, 0 0}
+      to{background-position:32px 32px, 32px 32px}
+    }
+    @keyframes glowDrift{
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(5px,-8px,0)}
+    }
+    @keyframes heroGlow{
+      0%,100%{transform:scale(1);opacity:.72}
+      50%{transform:scale(1.03);opacity:.88}
+    }
+    @keyframes boardFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-2px)}
+    }
+    @keyframes statusPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(180,154,114,.0)}
+      50%{box-shadow:0 0 0 8px rgba(180,154,114,.05)}
+    }
+    @keyframes linePulse{
+      0%,100%{opacity:.6;transform:scaleX(1)}
+      50%{opacity:.84;transform:scaleX(1.015)}
+    }
+    @keyframes heroRise{
+      from{opacity:0;transform:translateY(18px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes brandBlink{
+      0%, 42%{opacity:.88}
+      43%, 100%{opacity:.14}
+    }
+
+    @media (max-width: 1080px){
+      .wrap{
+        width:min(1280px, calc(100vw - 36px));
+      }
+      h1{font-size:48px}
+      .hero{grid-template-columns:1fr}
+      .servicesGrid,
+      .resultsGrid,
+      .fitGrid{grid-template-columns:1fr 1fr}
+      .processGrid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 720px){
+      .nav{
+        padding:12px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .actions{
+        width:100%;
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .menu{
+        width:100%;
+      }
+      .menuLink,
+      .pill{
+        width:100%;
+      }
+      .wrap{
+        width:min(100%, calc(100vw - 20px));
+        padding:0 10px;
+      }
+      .hero{
+        min-height:auto;
+        padding:22px 0 20px;
+      }
+      h1{font-size:34px}
+      .sectionTitle{font-size:25px}
+      .heroPanel,
+      .metaCard,
+      .serviceCard,
+      .resultCard,
+      .fitCard,
+      .processCard,
+      .stageCard,
+      .reviewsSlider,
+      .footerCard,
+      .heroBoard{padding:20px 18px}
+      .heroMeta,
+      .techPills,
+      .servicesGrid,
+      .resultsGrid,
+      .fitGrid,
+      .processGrid,
+      .reqGrid{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      body::before,
+      body::after,
+      .heroPanel::before,
+      .heroBoard,
+      .boardStatus,
+      .boardLines span,
+      .heroPanel.reveal.on,
+      .heroTech.reveal.on{
+        animation:none !important;
+      }
+      .reveal{
+        opacity:1 !important;
+        transform:none !important;
+        transition:none !important;
+      }
+      .pill,
+      .card,
+      .boardCell,
+      .faqQuestion{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="ООО ЛЮМИКС">
+        <span class="brandText" id="brandText">ООО ЛЮМИКС</span><span class="brandCursor" aria-hidden="true"></span>
+      </a>
+
+      <div class="actions">
+        <nav class="menu" aria-label="Навигация">
+          <a class="menuLink" href="#services">Услуги</a>
+          <a class="menuLink" href="#process">Процесс</a>
+          <a class="menuLink" href="#stages">Этапы</a>
+          <a class="menuLink" href="#faq">FAQ</a>
+          <a class="menuLink" href="#reviews">Отзывы</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <article class="heroPanel card reveal">
+        <h1>Разработка и автоматизация для бизнеса</h1>
+        <p class="sub">
+          Строим цифровые сервисы, корпоративные системы и интеграции так, чтобы запуск был быстрым, процесс прозрачным, а результат удобным для дальнейшего роста. Помогаем компаниям убирать ручную рутину, выстраивать понятную цифровую логику и делать рабочие процессы стабильнее без лишнего организационного шума. Для бизнеса это означает меньше ручных ошибок, лучше контроль по статусам и более спокойную ежедневную работу команды.
+        </p>
+
+        <div class="heroBadges" aria-label="Подход и компетенции">
+          <span class="badge">MVP и быстрый запуск</span>
+          <span class="badge">UX/UI и бизнес-логика</span>
+          <span class="badge">CI/CD и quality-gates</span>
+          <span class="badge">Интеграции и API</span>
+          <span class="badge">Поддержка после релиза</span>
+          <span class="badge">Проектирование архитектуры</span>
+          <span class="badge">Автоматизация внутренних процессов</span>
+          <span class="badge">Корпоративные сервисы и кабинеты</span>
+          <span class="badge">Прозрачные этапы внедрения</span>
+          <span class="badge">Контроль качества на каждом цикле</span>
+        </div>
+
+        <div class="heroActions">
+          <a class="pill ghost" href="#stages">Посмотреть этапы</a>
+        </div>
+      </article>
+
+      <div class="heroTech reveal">
+        <article class="heroBoard card" aria-label="Технологическая панель ЛЮМИКС">
+          <div class="boardTop">
+            <div class="boardKicker">LUMIX workflow layer<br>automation / integration / efficiency</div>
+            <div class="boardStatus">меньше ручной нагрузки</div>
+          </div>
+
+          <div class="boardMain">
+            <article class="boardCell">
+              <span class="boardLabel">Результат</span>
+              <span class="boardValue">Снижение ручной нагрузки</span>
+              <p class="boardText">Автоматизируем повторяющиеся действия, сокращаем количество ручных проверок и убираем лишние точки согласования, чтобы команда тратила время не на рутину, а на действительно важные задачи. За счет этого ускоряется работа, снижается количество ошибок и становится проще контролировать реальную картину по процессам.</p>
+            </article>
+
+            <article class="boardCell">
+              <span class="boardLabel">Эффект</span>
+              <span class="boardValue">Быстрее и спокойнее</span>
+              <p class="boardText">Когда процесс собран правильно, у бизнеса появляется меньше ручных точек отказа, а у команды меньше хаоса в ежедневной работе.</p>
+              <div class="boardLines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </article>
+          </div>
+        </article>
+
+        <div class="boardMiniGrid">
+          <article class="metaCard card">
+            <span class="metaLabel">Ядро</span>
+            <span class="metaValue">Логика, интеграции, автоматизация</span>
+            <p class="metaText">Связываем процессы, системы и данные в единый рабочий контур, чтобы меньше зависеть от ручных действий, разрозненных таблиц и человеческого фактора на критичных этапах. Это особенно важно там, где одна ошибка на входе потом влияет на весь следующий процесс.</p>
+          </article>
+
+          <article class="metaCard card">
+            <span class="metaLabel">Режим</span>
+            <span class="metaValue">Прозрачный проектный контур</span>
+            <p class="metaText">Фиксируем цели, риски и этапы так, чтобы проект ощущался управляемым с первой недели, а заказчик всегда понимал, что происходит и куда движется работа. Такой формат особенно ценен там, где важно держать сроки и не терять темп на согласованиях.</p>
+          </article>
+
+          <article class="metaCard card">
+            <span class="metaLabel">Контроль</span>
+            <span class="metaValue">Качество на каждом цикле</span>
+            <p class="metaText">Code review, проверка критичных сценариев и аккуратный вывод в рабочую среду без хаоса, чтобы релиз не превращался в стресс и срочное исправление последствий. Чем раньше устраняются узкие места, тем дешевле и спокойнее обходится развитие продукта.</p>
+          </article>
+
+          <article class="metaCard card">
+            <span class="metaLabel">Эффект</span>
+            <span class="metaValue">Меньше ручной нагрузки</span>
+            <p class="metaText">Цифровой контур выстраивается так, чтобы разгружать команду, ускорять работу и делать процесс предсказуемее не только на старте, но и в ежедневной эксплуатации. Это помогает руководителю видеть картину целиком, а сотрудникам тратить меньше сил на рутину.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="services">
+      <h2 class="sectionTitle">Что мы делаем для бизнеса</h2>
+      <p class="contentLead">Берем в работу задачи, где важно не просто написать код, а выстроить работающий цифровой контур: с понятной логикой, прозрачным процессом внедрения и нормальной основой для дальнейшего роста без постоянных переделок.</p>
+      <div class="servicesGrid">
+        <article class="serviceCard card">
+          <h3>Корпоративные системы</h3>
+          <p>Разрабатываем внутренние кабинеты, рабочие панели, учетные сервисы и продукты для ежедневных процессов компании. Такие системы помогают сократить ручную работу, сделать статусы прозрачнее и собрать управление в едином контуре. Особенно полезно там, где сотрудники сейчас переключаются между несколькими инструментами и теряют время на ручную сверку.</p>
+        </article>
+        <article class="serviceCard card">
+          <h3>Интеграции и API</h3>
+          <p>Соединяем CRM, ERP, бухгалтерские модули и внешние сервисы так, чтобы данные передавались без ручных операций и потерь. Это особенно важно там, где один и тот же процесс проходит через несколько систем и сотрудников. Нормальная интеграция снимает дублирование действий и делает данные стабильнее на каждом этапе.</p>
+        </article>
+        <article class="serviceCard card">
+          <h3>Автоматизация процессов</h3>
+          <p>Убираем повторяющиеся действия, сокращаем время обработки задач и делаем статусы прозрачными для команды и руководства. В результате бизнес получает меньше задержек, меньше ошибок и более предсказуемую ежедневную работу. Это один из самых быстрых способов почувствовать реальную пользу от цифровизации.</p>
+        </article>
+        <article class="serviceCard card">
+          <h3>Проектирование и UX/UI</h3>
+          <p>Прорабатываем пользовательские сценарии, ключевые экраны и цифровую логику, чтобы продукт помогал бизнесу, а не мешал ему. Интерфейс строится не ради внешнего вида, а ради скорости, понятности и удобства работы. Чем проще и точнее маршрут пользователя, тем меньше сопротивления при внедрении системы в реальную работу.</p>
+        </article>
+        <article class="serviceCard card">
+          <h3>Разработка MVP</h3>
+          <p>Выделяем критичный функционал, быстро запускаем первую рабочую версию и планируем дальнейшее развитие по этапам. Такой подход позволяет выйти в работу раньше и уже на практике уточнять следующий контур развития. Бизнес получает рабочую базу быстрее и не ждет полного завершения большого цикла, чтобы увидеть результат.</p>
+        </article>
+        <article class="serviceCard card">
+          <h3>Поддержка и развитие</h3>
+          <p>После релиза сопровождаем продукт, помогаем со стабильностью, обновлениями, мониторингом и следующим контуром задач. Для бизнеса это значит, что система не зависает в одном состоянии, а продолжает развиваться вместе с процессами компании. Это особенно важно, когда продукт становится частью ежедневной операционной работы.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="process">
+      <h2 class="sectionTitle">Как мы работаем</h2>
+      <p class="contentLead">Работаем по прозрачной модели в 4 шага: фиксируем цели, синхронизируем решения, показываем промежуточный результат и двигаемся итерациями без сюрпризов в финале. Такая схема помогает управлять проектом спокойно и не терять контроль в момент, когда меняются вводные или приоритеты.</p>
+      <div class="processGrid">
+        <article class="processCard card">
+          <h3><span class="processNum">1</span>Анализ</h3>
+          <p>Проводим интервью, разбираем текущие процессы и точки потерь. На выходе формируем scope, карту рисков, KPI и приоритеты запуска, чтобы проект с самого начала опирался на реальные бизнес-задачи, а не на догадки. Это позволяет сократить количество лишних решений уже на старте.</p>
+        </article>
+        <article class="processCard card">
+          <h3><span class="processNum">2</span>Проектирование</h3>
+          <p>Проектируем архитектуру, пользовательские сценарии и интеграционные контуры. Фиксируем технический каркас и реалистичный план спринтов, чтобы решение было удобно развивать и не приходилось дорого переделывать основу. Хорошее проектирование заметно снижает риск хаоса на следующих этапах.</p>
+        </article>
+        <article class="processCard card">
+          <h3><span class="processNum">3</span>Разработка</h3>
+          <p>Работаем итерациями с демо, code review, тестированием критичных сценариев и управляемыми релизами через CI/CD. За счет этого заказчик видит реальный прогресс по ходу проекта, а не только итог в самом конце. Такой ритм помогает быстрее принимать решения и сохранять контроль над приоритетами.</p>
+        </article>
+        <article class="processCard card">
+          <h3><span class="processNum">4</span>Поддержка</h3>
+          <p>После запуска сопровождаем систему, развиваем функциональность по приоритетам бизнеса и сохраняем стабильность продукта. Это позволяет не останавливать развитие после релиза и спокойно переводить систему в полноценную рабочую эксплуатацию. Для бизнеса это означает, что запуск становится началом нормальной работы, а не концом проекта.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="stages">
+      <h2 class="sectionTitle">Этапы реализации проекта</h2>
+      <p class="contentLead">Здесь показан не просто набор услуг, а реальная логика движения проекта: от понимания бизнес-задачи и проектирования решения до запуска, сопровождения и дальнейшего развития уже в рабочем режиме.</p>
+      <div class="stagesWrap">
+        <article class="stageCard card">
+          <h3>1. Бизнес-анализ и стратегия</h3>
+          <p class="stageResult">Структурированная модель проекта, прозрачные ожидания по срокам и понятная траектория запуска.</p>
+          <ul class="stageBullets">
+            <li>Декомпозиция процессов и выявление узких мест</li>
+            <li>Фиксация функциональных и нефункциональных требований</li>
+            <li>Матрица рисков и приоритизация критичных сценариев</li>
+            <li>Roadmap продукта по этапам внедрения</li>
+          </ul>
+          <p class="stageText">На старте синхронизируем бизнес-цели, ограничения и критерии успеха, чтобы заказчик, команда и стейкхолдеры работали в одной системе координат. Именно на этом этапе убирается большая часть будущих недопониманий, лишних доработок и расхождений между ожиданиями бизнеса и тем, что реально должно появиться в системе.</p>
+        </article>
+
+        <article class="stageCard card">
+          <h3>2. Архитектурное проектирование</h3>
+          <p class="stageResult">Архитектура, готовая к росту нагрузки, развитию и поддержке.</p>
+          <ul class="stageBullets">
+            <li>Выбор стека под бизнес-контекст</li>
+            <li>Проектирование backend-архитектуры и границ сервисов</li>
+            <li>Модель данных, API-контракты и интеграционные контуры</li>
+            <li>Базовые механизмы безопасности и отказоустойчивости</li>
+          </ul>
+          <p class="stageText">Проектируем технологическую основу с фокусом на надежность, масштабирование и предсказуемую эксплуатацию в долгом горизонте. Чем качественнее собрана основа, тем проще в дальнейшем подключать новые модули, выдерживать рост нагрузки и не превращать развитие продукта в постоянную борьбу с техническими ограничениями.</p>
+        </article>
+
+        <article class="stageCard card">
+          <h3>3. UX/UI и цифровая логика</h3>
+          <p class="stageResult">Интерфейс, который помогает процессу, а не усложняет его.</p>
+          <ul class="stageBullets">
+            <li>Сценарное проектирование пользовательских потоков</li>
+            <li>Прототипирование ключевых экранов до реализации</li>
+            <li>Оптимизация точек трения и ручных операций</li>
+            <li>Поддержка бизнес-метрик через интерфейс и логику</li>
+          </ul>
+          <p class="stageText">Смотрим на интерфейс как на часть бизнес-системы. Проектируем сценарии так, чтобы путь к целевому действию был короче, а работа команды проще. Хороший UX в корпоративной среде важен не меньше, чем в клиентском продукте, потому что именно он снижает сопротивление системе и ускоряет ежедневную работу сотрудников.</p>
+        </article>
+
+        <article class="stageCard card">
+          <h3>4. Разработка и внедрение</h3>
+          <p class="stageResult">Production-ready код, готовый к дальнейшему развитию и интеграциям.</p>
+          <ul class="stageBullets">
+            <li>Запуск MVP для сокращения time-to-market</li>
+            <li>Спринты с управлением приоритетами</li>
+            <li>Регулярные демо и фиксация договоренностей</li>
+            <li>CI/CD-конвейер и контролируемые релизы</li>
+          </ul>
+          <p class="stageText">Разработка ведется итеративно с постоянной валидацией результата. Каждое решение проходит через рабочий контур, а прогресс остается прозрачным. Такой формат помогает быстро замечать отклонения, вовремя корректировать приоритеты и сохранять у проекта нормальный ритм без накопления скрытых проблем к финалу.</p>
+        </article>
+
+        <article class="stageCard card">
+          <h3>5. Контроль качества и запуск</h3>
+          <p class="stageResult">Управляемый переход в продакшен без операционного шока.</p>
+          <ul class="stageBullets">
+            <li>Code review и проверки ключевых сценариев</li>
+            <li>Pre-release тестирование и проверка рисковых зон</li>
+            <li>Мониторинг, логирование и базовая наблюдаемость</li>
+            <li>План запуска без критичного влияния на рабочие процессы</li>
+          </ul>
+          <p class="stageText">Качество встраивается в проект с первого спринта. Это снижает риск регрессий, помогает выпускать предсказуемые релизы и спокойно проходить этап ввода в эксплуатацию. Для бизнеса это особенно важно в тех случаях, когда система затрагивает ежедневные процессы и даже небольшая ошибка может быстро стать операционной проблемой.</p>
+        </article>
+
+        <article class="stageCard card">
+          <h3>6. Поддержка и развитие</h3>
+          <p class="stageResult">Продукт остается стабильным, управляемым и готовым к масштабированию.</p>
+          <ul class="stageBullets">
+            <li>Плановые обновления и техническое обслуживание</li>
+            <li>Расширение функциональности под новые процессы</li>
+            <li>Оптимизация производительности и стоимости владения</li>
+            <li>Подготовка к росту нагрузки и команды</li>
+          </ul>
+          <p class="stageText">После релиза проект не замирает. Мы сопровождаем продукт, помогаем с новыми задачами, производительностью и следующим этапом цифрового развития. Это позволяет бизнесу не начинать каждый следующий шаг заново, а развивать уже работающую систему как полноценный рабочий инструмент, который растет вместе с компанией.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="results">
+      <h2 class="sectionTitle">Что получает бизнес</h2>
+      <p class="contentLead">В результате бизнес получает не просто выполненный проект, а более управляемую цифровую систему: с понятными этапами, предсказуемым бюджетом, прозрачным контролем изменений и возможностью спокойно развивать продукт дальше.</p>
+      <div class="resultsGrid">
+        <article class="resultCard card">
+          <h3>Прозрачный бюджет</h3>
+          <p>Работу делим на этапы с понятной оценкой и приоритетами, поэтому заказчик понимает, за что платит и какой эффект получает. Это снижает ощущение неопределенности и позволяет принимать решения по проекту более спокойно. Когда бюджет прозрачен, проще планировать развитие и не бояться следующего шага.</p>
+        </article>
+        <article class="resultCard card">
+          <h3>Управляемые изменения</h3>
+          <p>Любые новые пожелания проходят через change-control: сначала смотрим влияние на срок и стоимость, потом принимаем решение. Такой подход защищает проект от бесконечного расползания задач и хаотичных доработок. В итоге изменения становятся управляемой частью проекта, а не источником постоянного сбоя темпа.</p>
+        </article>
+        <article class="resultCard card">
+          <h3>Стабильный запуск</h3>
+          <p>Продукт выходит в рабочую среду по заранее согласованному сценарию с проверкой рисков и контролем качества. Это помогает запускать решения без лишнего напряжения для команды и без резких сбоев в операционной работе. Чем спокойнее проходит ввод в эксплуатацию, тем быстрее бизнес начинает получать реальную пользу от системы.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="fit">
+      <h2 class="sectionTitle">Кому мы подходим</h2>
+      <p class="contentLead">Работаем с компаниями, где важны скорость запуска, прозрачные процессы и аккуратная цифровизация без перегруза команды. Особенно там, где уже накопилось много ручных действий, промежуточных таблиц и лишних согласований между людьми и системами.</p>
+      <div class="fitGrid">
+        <article class="fitCard card">
+          <h3>Сервисные компании</h3>
+          <p>Для цифровизации заявок, внутренних операций и снижения доли ручной работы на ежедневных этапах. Особенно полезно там, где важны скорость ответа, контроль статусов и предсказуемость исполнения. Когда поток обращений растет, такие решения быстро начинают окупаться за счет упорядочивания работы.</p>
+        </article>
+        <article class="fitCard card">
+          <h3>Производство и учет</h3>
+          <p>Когда нужно связать внутренние процессы, отчеты, статусы и контроль в едином рабочем контуре. Это помогает видеть реальную картину по операциям, а не собирать ее вручную из разных источников. Чем меньше разрозненных точек учета, тем легче управлять реальной ситуацией в бизнесе.</p>
+        </article>
+        <article class="fitCard card">
+          <h3>Новые цифровые продукты</h3>
+          <p>Когда важен быстрый запуск MVP и дальнейшее развитие платформы без потери темпа и управляемости. Такой формат подходит бизнесу, который хочет начать работать с продуктом рано и развивать его по приоритетам. Это позволяет быстрее проверять гипотезы и не замораживать развитие в длинной подготовке.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="faq">
+      <h2 class="sectionTitle">Частые вопросы</h2>
+      <div class="faqList">
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">За сколько вы реально запускаете рабочую первую версию?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Срок зависит от объема задачи, но на старте мы всегда фиксируем scope MVP, критерии готовности и календарь демо по спринтам, чтобы запуск был управляемым и без срыва сроков. Важно, что речь идет не о формальной демонстрации, а о рабочем контуре, который уже можно использовать и на базе которого можно планировать следующий этап развития.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Как вы контролируете бюджет и защищаете проект от бесконечных доработок?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Разбиваем работу на этапы с прозрачной оценкой и приоритетами. Любые изменения проходят через change-control: сначала оцениваем влияние на срок и стоимость, затем принимаем решение вместе с заказчиком. Это позволяет не терять управляемость проекта и не приходить в финале к ситуации, когда бюджет вырос, а границы результата стали размытыми.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Как вы следите за качеством и снижаете риск критичных багов после релиза?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Качество встраивается в процесс с каждого спринта: code review, тестирование ключевых сценариев, pre-release проверки и контроль релиза. Это снижает риск регрессий и делает эксплуатацию спокойнее с первого дня. Мы исходим из того, что стабильность должна появляться не после запуска, а закладываться еще во время разработки.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Что с безопасностью, NDA и правами на результат?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>При необходимости заключаем NDA и фиксируем договором передачу прав на результат. Репозитории, доступы, инфраструктура и документация оформляются так, чтобы продукт полностью контролировался вашей компанией. Для бизнеса это важно не только юридически, но и операционно: система не должна зависеть от подрядчика как от единственной точки доступа.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Можно ли встроиться в нашу текущую систему и не остановить работу бизнеса?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Да. Подключаемся к действующей архитектуре и процессам поэтапно. Критичные операции продолжают работать, пока новая функциональность внедряется без резкого операционного шока. Обычно именно такой подход и дает лучший результат: бизнес не останавливается, а система постепенно переходит в более зрелый и управляемый формат.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Сможем ли мы видеть, что реально сделано по проекту, а не просто получать общие статусы?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Да. Мы показываем промежуточный результат по этапам, фиксируем договоренности и даем понятную картину по текущему статусу работ. Для заказчика это важно не только как контроль, но и как возможность вовремя скорректировать приоритеты, если меняется бизнес-ситуация.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Что делать, если на старте у нас нет полного технического задания?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Это нормальная ситуация. Во многих проектах на старте есть только бизнес-задача, проблемная зона и общее понимание результата. Мы помогаем разложить это на этап анализа, требований, ограничений и приоритетов, чтобы постепенно превратить идею в рабочую модель проекта без лишних догадок.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Можно ли начать с небольшого объема, а потом расширять проект?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Да, это один из самых практичных форматов. Мы можем начать с MVP или с отдельного критичного участка процесса, чтобы быстрее получить работающий результат. После этого развитие идет уже на реальных данных, а не только на предварительных предположениях.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Как вы работаете, если в проекте уже есть внутренняя команда или другой подрядчик?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Мы можем встроиться в уже существующий контур и работать как с внутренней командой, так и рядом с другими исполнителями. В таких проектах особенно важны прозрачные зоны ответственности, единая логика принятия решений и понятная техническая коммуникация, чтобы работа не превращалась в конфликт процессов.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Что будет после запуска: вы помогаете с поддержкой и дальнейшим развитием?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Да. После запуска мы можем сопровождать систему, помогать с новыми задачами, производительностью, обновлениями и следующим этапом развития. Для бизнеса это означает, что проект не остается в подвешенном состоянии сразу после релиза, а получает понятный путь дальнейшей эксплуатации и роста.</div>
+        </article>
+
+        <article class="faqItem card">
+          <button class="faqQuestion" type="button" aria-expanded="false">
+            <span class="faqQuestionText">Если процессы у нас нестандартные, имеет ли смысл делать индивидуальное решение?</span>
+            <span class="faqPlus" aria-hidden="true">+</span>
+          </button>
+          <div class="faqAnswer" hidden>Да, особенно если стандартные продукты уже не покрывают реальную логику работы и вынуждают команду постоянно обходить ограничения вручную. Индивидуальное решение имеет смысл тогда, когда оно снижает операционные потери, убирает дублирование действий и дает бизнесу управляемость, которой нельзя получить на шаблонной системе.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="reviews">
+      <h2 class="sectionTitle">Отзывы о компании</h2>
+      <div class="reviewsSlider card" aria-label="Отзывы о компании">
+        <div class="reviewSlide is-active">
+          <p>С ребятами было легко работать. Быстро поняли, что у нас не так в процессе, и без лишней суеты предложили нормальное решение. По ходу проекта всегда можно было написать и быстро получить ответ.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Понравилось, что не говорили с нами как с айтишниками. Все объясняли обычным языком, показывали, что уже готово, и не тянули с согласованиями. В работе это правда сильно чувствуется.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Сделали не просто красиво, а реально удобно для работы. После запуска стало меньше ручной рутины, и внутри команды сразу стало понятнее, кто что делает и на каком этапе все находится.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Коммуникация очень адекватная. Нам всегда было понятно, что сейчас в работе, что будет дальше и где могут быть спорные моменты. За счет этого проект не выматывал, как это часто бывает.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Проект шел спокойно, без ощущения вечного аврала. Если у нас по ходу появлялись новые идеи, команда сначала честно говорила, как это повлияет на сроки, а потом уже предлагала, как лучше сделать.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Отдельно хочется отметить внимание к деталям. Было видно, что думают не только про быстрый запуск, но и про то, как этим потом пользоваться каждый день. Такие вещи обычно сразу заметны.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Нам нужен был просто нормальный рабочий результат без красивых обещаний. В итоге именно это и получили: понятный процесс, нормальный темп и ощущение, что проектом действительно управляют.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Мы пришли с задачей, которая давно мешала нормальной внутренней работе: слишком много ручных действий, постоянные уточнения и ощущение, что все держится только на людях, которые и так перегружены. Команда быстро разобралась в текущей схеме, спокойно задала правильные вопросы и показала, где именно теряется время. Дальше все шло без лишней нервозности: поэтапно, с демонстрациями и понятной фиксацией того, что уже сделано. Не было чувства, что проект живет отдельно от реальной работы компании. После запуска стало заметно легче работать внутри процесса, и это, пожалуй, лучший показатель того, что все было сделано не зря.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>После прошлого неудачного опыта мы очень осторожно подходили к выбору команды, потому что совсем не хотелось снова попасть в историю, где в начале все звучит красиво, а в конце никто ни за что не отвечает. Здесь понравилось, что сначала вникли в нашу задачу, ограничения и реальную картину, а не начали сразу что-то продавать. По ходу работы было видно, что люди понимают, что делают: все решения объяснялись нормально, без показной сложности. Если что-то менялось, нам сразу говорили, как это скажется на сроках и объеме. В итоге запуск прошел спокойно, без неприятных сюрпризов и без ощущения, что в конце все держится на последних силах.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>На момент старта мы уже довольно устали от старой схемы работы, где проблемы решались кусками, а каждое новое изменение только добавляло путаницы. Хотелось не очередную временную доработку, а более внятную систему, которую потом можно спокойно развивать. На первом же этапе помогли разложить все по полочкам: что действительно важно, что можно отложить, а что вообще не стоит тащить в проект. Во время разработки регулярно показывали результат, поэтому не было неприятного ощущения, что в конце мы увидим что-то совсем не то. После запуска команда тоже не исчезла, а спокойно помогла пройти первые рабочие недели. За это отдельный плюс, потому что именно в этот момент обычно и видно настоящее отношение к проекту.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Работать было спокойно. Без суеты, но и без провисаний.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>Самое ценное - прозрачность. Всегда было понятно, где мы находимся по проекту.</p>
+        </div>
+        <div class="reviewSlide">
+          <p>После запуска не исчезли. Помогли спокойно закрыть первые вопросы и все довести до нормального рабочего состояния.</p>
+        </div>
+        <div class="reviewDots" aria-label="Переключение отзывов"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footerCard card">
+        <div class="footerRow">
+          <div class="footerLeft">
+            <div class="footerCopy">© ООО "ЛЮМИКС", <span id="year">2024-2026</span></div>
+            <div class="footerDetails">
+              ИНН: 9726089397 · ОГРН: 1247700779809 · 117105, город Москва, Новоданиловская наб, д. 12, помещ. 18
+            </div>
+          </div>
+          <div class="footerContact">
+            <div class="footerContactLabel">Написать нам</div>
+            <div class="footerContactEmail"><a href="mailto:lumixkzn@mail.ru">lumixkzn@mail.ru</a></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modalBackdrop" id="backdrop" role="dialog" aria-modal="true" aria-label="Модальное окно">
+    <div class="modal" role="document">
+      <div class="modalTop">
+        <h3 class="mTitle" id="modalTitle">Окно</h3>
+        <button class="close" id="closeBtn" type="button">Закрыть</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    (function initBrandTyping() {
+      const el = document.getElementById("brandText");
+      if (!el) return;
+
+      const fullText = "ООО ЛЮМИКС";
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) {
+        el.textContent = fullText;
+        return;
+      }
+
+      const holdDelay = 3800;
+      const restartDelay = 650;
+
+      let index = 0;
+      let mode = "typing";
+
+      function typingDelay(nextChar) {
+        if (nextChar === " ") return 230;
+        return 135 + Math.floor(Math.random() * 55);
+      }
+
+      function erasingDelay(currentIndex) {
+        if (currentIndex <= 3) return 120;
+        return 82 + Math.floor(Math.random() * 28);
+      }
+
+      function tick() {
+        if (mode === "typing") {
+          index += 1;
+          el.textContent = fullText.slice(0, index);
+          if (index >= fullText.length) {
+            mode = "holding";
+            window.setTimeout(() => {
+              mode = "erasing";
+              tick();
+            }, holdDelay);
+            return;
+          }
+          window.setTimeout(tick, typingDelay(fullText.charAt(index)));
+          return;
+        }
+
+        if (mode === "erasing") {
+          index -= 1;
+          el.textContent = fullText.slice(0, index);
+          if (index <= 0) {
+            mode = "restart";
+            window.setTimeout(() => {
+              mode = "typing";
+              tick();
+            }, restartDelay);
+            return;
+          }
+          window.setTimeout(tick, erasingDelay(index));
+        }
+      }
+
+      el.textContent = "";
+      window.setTimeout(tick, 500);
+    })();
+
+    const MODALS = {
+      about: {
+        title: "О компании",
+        html: `
+          <h2 class="mTitle">ООО ЛЮМИКС</h2>
+          <p class="lead">ЛЮМИКС - команда, которая разрабатывает прикладные цифровые решения для бизнеса: внутренние сервисы, автоматизацию процессов, интеграции и рабочие инструменты для сотрудников.</p>
+          <p>Мы берем из подхода Кубикор главное: прозрачную модель работы, понятные этапы, контроль качества на каждом спринте и фокус на результате, который можно использовать и развивать дальше.</p>
+          <p>Для нас важно не просто сделать релиз, а выстроить систему, которая будет работать стабильно сегодня и поддерживать рост завтра.</p>
+          <div class="mutedSmall">ООО ЛЮМИКС · Россия · lumixkzn@mail.ru</div>
+        `
+      },
+      services: {
+        title: "Услуги",
+        html: `
+          <h2 class="mTitle">Услуги ЛЮМИКС</h2>
+          <p class="lead">Берем на себя весь цикл работ - от бизнес-анализа до запуска и сопровождения продукта.</p>
+          <ul>
+            <li><strong>Разработка ПО под задачи бизнеса:</strong> корпоративные системы, сервисные панели, личные кабинеты, внутренние платформы.</li>
+            <li><strong>Автоматизация процессов:</strong> снижение ручных операций, выстраивание цифровой логики, контроль статусов и маршрутов задач.</li>
+            <li><strong>Интеграции и API:</strong> связь CRM, ERP, бухгалтерских контуров и внешних сервисов в единой системе.</li>
+            <li><strong>UX/UI и проектирование:</strong> пользовательские сценарии, интерфейсы и архитектура, рассчитанная на дальнейшее развитие.</li>
+            <li><strong>MVP и запуск:</strong> быстрый старт первой рабочей версии без потери управляемости проекта.</li>
+            <li><strong>Поддержка и развитие:</strong> обновления, сопровождение и следующий этап цифрового роста.</li>
+          </ul>
+        `
+      },
+      contact: {
+        title: "Контакты",
+        html: `
+          <h2 class="mTitle">Контакты</h2>
+          <p class="lead">Напишите нам, если хотите обсудить проект, автоматизацию процесса или запуск новой цифровой системы.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="pill" href="mailto:lumixkzn@mail.ru">Email: lumixkzn@mail.ru</a>
+          </div>
+        `
+      }
+    };
+
+    const backdrop = document.getElementById("backdrop");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function openModal(key) {
+      const modal = MODALS[key];
+      if (!modal) return;
+      modalTitle.textContent = modal.title || "";
+      modalBody.innerHTML = modal.html || "";
+      backdrop.classList.add("on");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      backdrop.classList.remove("on");
+      document.body.style.overflow = "";
+      modalBody.innerHTML = "";
+    }
+
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (event) => {
+      if (event.target === backdrop) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && backdrop.classList.contains("on")) closeModal();
+    });
+
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-modal]");
+      if (!trigger) return;
+      const key = trigger.getAttribute("data-modal");
+      if (!key) return;
+      event.preventDefault();
+      openModal(key);
+    });
+
+    document.querySelectorAll(".faqQuestion").forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faqItem");
+        const answer = item.querySelector(".faqAnswer");
+        const expanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", expanded ? "false" : "true");
+        answer.hidden = expanded;
+        item.classList.toggle("open", !expanded);
+      });
+    });
+
+    (function initReviews() {
+      const slider = document.querySelector(".reviewsSlider");
+      if (!slider) return;
+
+      const slides = Array.from(slider.querySelectorAll(".reviewSlide"));
+      const dotsWrap = slider.querySelector(".reviewDots");
+      if (!slides.length || !dotsWrap) return;
+
+      dotsWrap.innerHTML = "";
+      slides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "reviewDot" + (index === 0 ? " on" : "");
+        dot.setAttribute("aria-label", "Показать отзыв " + (index + 1));
+        dot.addEventListener("click", () => show(index));
+        dotsWrap.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsWrap.querySelectorAll(".reviewDot"));
+      let current = 0;
+
+      function show(index) {
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("is-active", slideIndex === index);
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("on", dotIndex === index);
+        });
+        current = index;
+      }
+
+      setInterval(() => {
+        show((current + 1) % slides.length);
+      }, 4800);
+    })();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("on");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
