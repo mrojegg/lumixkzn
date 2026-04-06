@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mrojegg.github.io/lumixkzn/sitemap.xml
-
+Sitemap: https://lyumiks.ru/sitemap.xml
