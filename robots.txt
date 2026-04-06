@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mrojegg.github.io/lumixkzn/sitemap.xml
+
